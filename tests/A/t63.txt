@@ -1,1 +1,0 @@
-Not (Exists "x" (Forall "y" (Iff (Rel "F" [Var "y",Var "x"]) (Not (Rel "F" [Var "y",Var "y"])))))
