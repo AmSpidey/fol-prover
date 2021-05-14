@@ -40,3 +40,11 @@ distribute xss yss = go xss yss yss where
   go [] _ _ = []
   go (_:xss) yss [] = go xss yss yss
   go (xs:xss) yss (ys:yss') = (xs ++ ys) : go (xs:xss) yss yss'
+
+combWithRep :: Int -> [a] -> [[a]]
+combWithRep 0 l = []
+combWithRep 1 l = [[x] | x <- l]
+combWithRep k l = distribute (combWithRep (k - 1) l) [[x] | x <- l]
+
+replaceComb :: [a] -> [b] -> [[(a, b)]]
+replaceComb vars ts = [zip vars z | z <- combWithRep (length vars) ts]

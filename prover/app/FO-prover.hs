@@ -1,4 +1,4 @@
-{-# LANGUAGE UnicodeSyntax, TypeSynonymInstances, FlexibleInstances, LambdaCase #-}
+{-# LANGUAGE UnicodeSyntax, FlexibleInstances #-}
 
 module Main where
 
@@ -19,6 +19,7 @@ import Parser hiding (one)
 import Utils(distribute)
 import SATSolver
 import FOUtils
+import Converters
 
 funVariants :: FunName -> [FunName]
 funVariants x = x : [x ++ show n | n <- [0..]]
@@ -29,8 +30,8 @@ funsT (Fun f _) = f
 
 fresh_consts :: [Term] -> Int -> [Term]
 fresh_consts cs k =
-    let l = take k [ y | y <- funVariants "fun", not $ y `elem` (map funsT cs) ]
-    in map (\x -> Fun x []) l
+    let l = take k [ y | y <- funVariants "fun", notElem y (map funsT cs) ]
+    in map (`Fun` []) l
 
 type Arity = Int
 type Signature = [(FunName, Arity)]
@@ -65,15 +66,16 @@ removeForall φ = φ
 
 prover :: FOProver
 prover φ =
-    let one_two = removeForall(skolemise (Not φ))
+    let one_two = removeForall(skolemise $ generalise (Not φ))
         vs = vars one_two
         consts = constants $ sig one_two
-        grounds = groundInstances one_two (consts ++ fresh_consts consts 1)
+        consts' = if null consts then fresh_consts consts 1 else consts
+        grounds = groundInstances one_two consts'
     in (not . sat) (combAnd grounds)
 
 main :: IO ()
 main = do
-    eof <- hIsEOF stdin
+    eof <- isEOF
     if eof
         then return ()
         else do
