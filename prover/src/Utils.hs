@@ -1,3 +1,5 @@
+{-# LANGUAGE ParallelListComp #-}
+
 module Utils where
 
 import Data.List hiding (tails)
@@ -48,3 +50,6 @@ combWithRep k l = distribute (combWithRep (k - 1) l) [[x] | x <- l]
 
 replaceComb :: [a] -> [b] -> [[(a, b)]]
 replaceComb vars ts = [zip vars z | z <- combWithRep (length vars) ts]
+
+allSuffixes :: [a] -> [[a]]
+allSuffixes x = [take (k - 1) x ++ [y] | y <- x | k <- [1..]]

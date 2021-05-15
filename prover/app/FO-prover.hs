@@ -1,4 +1,4 @@
-{-# LANGUAGE UnicodeSyntax, FlexibleInstances #-}
+{-# LANGUAGE UnicodeSyntax, FlexibleInstances, ParallelListComp, FlexibleContexts #-}
 
 module Main where
 
@@ -16,10 +16,11 @@ import Test.QuickCheck hiding (Fun, (===))
 
 import Formula
 import Parser hiding (one)
-import Utils(distribute, combWithRep)
+import Utils(distribute, combWithRep, allSuffixes)
 import SATSolver
 import FOUtils
 import Converters
+
 
 funVariants :: FunName -> [FunName]
 funVariants x = x : [x ++ show n | n <- [0..]]
@@ -65,19 +66,25 @@ removeForall (Forall _ φ) = removeForall φ
 removeForall φ = φ
 
 universe :: Signature -> [Term]
-universe sig = 
+universe sig =
     let consts = constants sig
         consts' = if null consts then fresh_consts consts 1 else consts
     in consts' ++ [Fun f vrs | (f, ar) <- sig, vrs <- combWithRep ar (universe sig)]
 
 prover :: FOProver
 prover φ =
+    -- let one_two = removeForall(skolemise (Not φ))
+    --     vs = vars one_two
+    --     consts = constants $ sig one_two
+    --     grounds = groundInstances one_two (consts ++ fresh_consts consts 1)
+    -- in (not . sat) (combAnd grounds)
     let one_two = removeForall(skolemise $ generalise (Not φ))
-        --vs = vars one_two
         signature = sig one_two
-        universe = universe signature
-        grounds = groundInstances one_two universe
-    in (not . sat) (combAnd grounds)
+        uni = universe signature
+        grounds = groundInstances one_two uni
+    in case fv one_two of
+        [] -> False
+        _ -> (not . and) ([sat (combAnd gs) | gs <- allSuffixes grounds])
 
 main :: IO ()
 main = do
