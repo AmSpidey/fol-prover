@@ -27,6 +27,7 @@ nnf (Not (Forall var phi)) = Exists var (nnf (Not phi))
 nnf (Not (Exists var phi)) = Forall var (nnf (Not phi))
 
 -- prenex normal form
+
 data Quantifier
   = EXISTS
   | FORALL

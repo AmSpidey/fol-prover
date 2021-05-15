@@ -34,7 +34,7 @@ functions :: Eq a => [a] -> [b] -> [a -> b]
 functions [] _ = [undefined]
 functions (a:as) bs = merges [[update f a b | f <- functions as bs] | b <- bs]
 
--- find all ways of joining the lists (c.f. example below)
+-- find all ways of joining the lists
 distribute :: [[a]] -> [[a]] -> [[a]]
 distribute xss yss = go xss yss yss where
   go [] _ _ = []

@@ -16,7 +16,7 @@ import Test.QuickCheck hiding (Fun, (===))
 
 import Formula
 import Parser hiding (one)
-import Utils(distribute)
+import Utils(distribute, combWithRep)
 import SATSolver
 import FOUtils
 import Converters
@@ -64,13 +64,19 @@ removeForall :: Formula -> Formula
 removeForall (Forall _ φ) = removeForall φ
 removeForall φ = φ
 
+universe :: Signature -> [Term]
+universe sig = 
+    let consts = constants sig
+        consts' = if null consts then fresh_consts consts 1 else consts
+    in consts' ++ [Fun f vrs | (f, ar) <- sig, vrs <- combWithRep ar (universe sig)]
+
 prover :: FOProver
 prover φ =
     let one_two = removeForall(skolemise $ generalise (Not φ))
-        vs = vars one_two
-        consts = constants $ sig one_two
-        consts' = if null consts then fresh_consts consts 1 else consts
-        grounds = groundInstances one_two consts'
+        --vs = vars one_two
+        signature = sig one_two
+        universe = universe signature
+        grounds = groundInstances one_two universe
     in (not . sat) (combAnd grounds)
 
 main :: IO ()

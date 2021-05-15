@@ -105,5 +105,5 @@ groundInstances f ts = let
         [] -> [f]
         _ -> map (groundRepl f . HM.fromList) combs
 groundRepl :: Formula -> HM.HashMap VarName Term -> Formula
-groundRepl f hm = subst (hm HM.!) f
+groundRepl f hm = apply (hm HM.!) f
 
