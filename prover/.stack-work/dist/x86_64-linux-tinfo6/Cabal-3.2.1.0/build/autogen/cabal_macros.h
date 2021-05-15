@@ -33,6 +33,17 @@
   (major1) == 4 && (major2) == 14 && (minor) <= 1)
 #endif /* MIN_VERSION_base */
 
+/* package extra-1.7.9 */
+#ifndef VERSION_extra
+#define VERSION_extra "1.7.9"
+#endif /* VERSION_extra */
+#ifndef MIN_VERSION_extra
+#define MIN_VERSION_extra(major1,major2,minor) (\
+  (major1) <  1 || \
+  (major1) == 1 && (major2) <  7 || \
+  (major1) == 1 && (major2) == 7 && (minor) <= 9)
+#endif /* MIN_VERSION_extra */
+
 /* package hashable-1.3.0.0 */
 #ifndef VERSION_hashable
 #define VERSION_hashable "1.3.0.0"
@@ -221,10 +232,10 @@
 #endif /* MIN_TOOL_VERSION_strip */
 
 #ifndef CURRENT_PACKAGE_KEY
-#define CURRENT_PACKAGE_KEY "prover-0.1.0.0-3MGyh18bUBJ9T6j7vPyvva"
+#define CURRENT_PACKAGE_KEY "prover-0.1.0.0-Cg15irtJkh06TEaRpzql0h"
 #endif /* CURRENT_PACKAGE_KEY */
 #ifndef CURRENT_COMPONENT_ID
-#define CURRENT_COMPONENT_ID "prover-0.1.0.0-3MGyh18bUBJ9T6j7vPyvva"
+#define CURRENT_COMPONENT_ID "prover-0.1.0.0-Cg15irtJkh06TEaRpzql0h"
 #endif /* CURRENT_COMPONENT_ID */
 #ifndef CURRENT_PACKAGE_VERSION
 #define CURRENT_PACKAGE_VERSION "0.1.0.0"

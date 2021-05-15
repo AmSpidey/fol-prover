@@ -2,6 +2,53 @@ module Converters where
 
 import Formula
 import FOUtils
+import PropUtils
+
+import qualified Data.Tuple.Extra as Tuple
+
+-- cnf
+
+cnf :: Formula -> CNF
+cnf = go . nnf where
+  go T = []
+  go F = [[]]
+  go (Prop p) = [[Pos p]]
+  go (Not (Prop p)) = [[Neg p]]
+  go (φ `And` ψ) = go φ ++ go ψ
+  go (φ `Or` ψ) = distribute (go φ) (go ψ)
+
+-- ecnf
+
+name :: Int -> PropName
+name k = "MARTAVAR_" ++ show k
+
+ecnf :: Formula -> CNF
+ecnf f = concat $ map cnf (Tuple.fst3 (go f 0)) where
+  go :: Formula -> Int -> ([Formula], Int, Formula)
+  go T 0 = ([T], 0, T)
+  go F 0 = ([F], 0, F)
+  go f 0 =
+    let new_var = Prop $ name 1
+    in ([new_var] ++ Tuple.fst3(go f 1), 0, new_var)
+  go (Not φ) k =
+    let (fn, kn, pn) = go φ (k + 1)
+        new_var = Prop $ name k
+    in ([Iff (new_var) (Not pn)] ++ fn, kn + 1, new_var)
+  go (φ `And` ψ) k = go_op φ ψ AND k
+  go (φ `Or` ψ) k = go_op φ ψ OR k
+  go (φ `Implies` ψ) k = go_op φ ψ IMPLIES k
+  go (φ `Iff` ψ) k = go_op φ ψ IFF k
+  go f k = ([], k, f) where
+  go_op :: Formula -> Formula -> BiOp -> Int -> ([Formula], Int, Formula)
+  go_op φ ψ op k = 
+    let (fl, kl, pl) = go φ (k + 1)
+        (fr, kr, pr) = go ψ (kl + 1)
+        new_var = Prop $ name k
+    in case op of
+        AND -> ([Iff (new_var) (pl `And` pr)] ++ fl ++ fr, kr + 1, new_var)
+        OR -> ([Iff (new_var) (pl `Or` pr)] ++ fl ++ fr, kr + 1, new_var)
+        IFF -> ([Iff (new_var) (pl `Iff` pr)] ++ fl ++ fr, kr + 1, new_var)
+        IMPLIES -> ([Iff (new_var) (pl `Implies` pr)] ++ fl ++ fr, kr + 1, new_var)
 
 -- negation normal form
 

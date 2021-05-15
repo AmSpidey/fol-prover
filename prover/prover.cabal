@@ -29,6 +29,7 @@ library
       Formula
       FOUtils
       Parser
+      PropUtils
       SATSolver
       Utils
   other-modules:
@@ -38,6 +39,7 @@ library
   build-depends:
       QuickCheck
     , base >=4.7 && <5
+    , extra
     , hashable
     , mtl
     , parsec
@@ -55,6 +57,7 @@ executable prover-exe
   build-depends:
       QuickCheck
     , base >=4.7 && <5
+    , extra
     , hashable
     , mtl
     , parsec

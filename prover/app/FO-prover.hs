@@ -82,9 +82,7 @@ prover φ =
         signature = sig one_two
         uni = universe signature
         grounds = groundInstances one_two uni
-    in case fv one_two of
-        [] -> False
-        _ -> (not . and) ([sat (combAnd gs) | gs <- allSuffixes grounds])
+    in (not . and) ([dpSatSolver (combAnd gs) | gs <- allSuffixes grounds])
 
 main :: IO ()
 main = do

@@ -101,9 +101,8 @@ hasQuants φ = False
 groundInstances :: Formula -> [Term] -> [Formula]
 groundInstances f ts = let
     combs = replaceComb (vars f) ts
-    in case combs of
-        [] -> [f]
-        _ -> map (groundRepl f . HM.fromList) combs
+    frees = fv f
+    in if null combs || null frees then [f] else map (groundRepl f . HM.fromList) combs
 groundRepl :: Formula -> HM.HashMap VarName Term -> Formula
 groundRepl f hm = apply (hm HM.!) f
 

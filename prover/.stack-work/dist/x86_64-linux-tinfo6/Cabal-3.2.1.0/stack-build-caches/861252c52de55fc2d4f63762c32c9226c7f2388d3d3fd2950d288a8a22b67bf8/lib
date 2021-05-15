@@ -1,28 +1,30 @@
 /home/zly/IMPORTANT/STUDIA materiały/2 stopień/obowiązki/logika/prover/my_prover/prover/src/Parser.hs:
   hash: bc06b55eb97e6f2d3ca84951e1fb07218dadc5bf24269b241dbbca87b372da4a
 /home/zly/IMPORTANT/STUDIA materiały/2 stopień/obowiązki/logika/prover/my_prover/prover/prover.cabal:
-  hash: 7d557d347c438bd7622b22ccbfd7954d4ca528df053f20d89051c7737ee94e7e
+  hash: e1884bbbdc6cf42b8e413c2eafe998b61c97d19a6dbda4e32c836ea89f532adb
 /home/zly/IMPORTANT/STUDIA materiały/2 stopień/obowiązki/logika/prover/my_prover/prover/src/SATSolver.hs:
-  hash: f6d466f53b5f4ab55388dbee87e614ac6ed83a57d981ed7ba8b0320a1ea71dbb
+  hash: 01aa2012c88d86c88d61c88c0da10768505fdaebe24317f46bf848b9c5202810
 ? /home/zly/IMPORTANT/STUDIA materiały/2 stopień/obowiązki/logika/prover/my_prover/prover/.stack-work/dist/x86_64-linux-tinfo6/Cabal-3.2.1.0/build/autogen/cabal_macros.h
-: hash: ade7f09821fb7a4cf9c56b0e8aacda90cd49b89ed795d3396229a330d6bb78a4
+: hash: 9925e910fd9201d8e4df783c94a2aa2816730a17449efa31f2daa05c4c165b6f
 /home/zly/IMPORTANT/STUDIA materiały/2 stopień/obowiązki/logika/prover/my_prover/prover/src/FOUtils.hs:
-  hash: 7b0fa58713354fcb4e5a4fdc35bcdbdbd7faadf6adeb438970c3ccd27b4e900a
+  hash: db50531b85aeb3085784e40204f8e6519d86100cc7a8a077a64073d8c4c0c717
 /home/zly/IMPORTANT/STUDIA materiały/2 stopień/obowiązki/logika/prover/my_prover/prover/src/Converters.hs:
-  hash: d7b861242038fce2e1b8c9d1af20f5ac458d4056e43df9a00800be82f3be0909
+  hash: d598571524a421b6f719abd43005db230d0d8dc0ddce4aa016853366c1dace51
 /home/zly/IMPORTANT/STUDIA materiały/2 stopień/obowiązki/logika/prover/my_prover/prover/README.md:
   hash: 127e3ba57e53a6c547038a28b6470891642d79fe2dac77e49b1f4e7eed079ed4
 /home/zly/IMPORTANT/STUDIA materiały/2 stopień/obowiązki/logika/prover/my_prover/prover/ChangeLog.md:
   hash: 383fd9070edc8d42272da9b132dd6986c888cae855b3854b339b6ffc2f3a211f
+/home/zly/IMPORTANT/STUDIA materiały/2 stopień/obowiązki/logika/prover/my_prover/prover/src/PropUtils.hs:
+  hash: 62d6fc1ff27970bee9102ceb2e5f784110b901e7c0461a6530e2ff4331a74a3c
 /home/zly/IMPORTANT/STUDIA materiały/2 stopień/obowiązki/logika/prover/my_prover/prover/src/Utils.hs:
   hash: 645168843a4668551b71cfa6caa8418f3793f327a0c60b0054325cc471eecf71
 /usr/include/stdc-predef.h:
   hash: 64fdf694f7b3d51ec6c45c06dcb71ebbe9455742d3ea673012016668853d3bff
 ? /home/zly/IMPORTANT/STUDIA materiały/2 stopień/obowiązki/logika/prover/my_prover/prover/.stack-work/dist/x86_64-linux-tinfo6/Cabal-3.2.1.0/build/autogen/Paths_prover.hs
-: hash: be3d12a8b176f3366ac2fd29afcf9c1b3dc95ac08812a2ce255882b5b11c2829
+: hash: 1832280aaaa872095f759f3adafff85b9ada6047a4d9154a95df935a477f87e9
 /home/zly/IMPORTANT/STUDIA materiały/2 stopień/obowiązki/logika/prover/my_prover/prover/src/Formula.hs:
   hash: e03f89e2e31708e8c43d06e01cd7e9703bb9052045ea23f8aa3e246a80720f33
 /home/zly/.stack/programs/x86_64-linux/ghc-tinfo6-8.10.4/lib/ghc-8.10.4/include/ghcversion.h:
   hash: ddf0d2a5b1862138ade2de39566db63c5db748c6df9abc567bd8b7326ae3838a
 /home/zly/IMPORTANT/STUDIA materiały/2 stopień/obowiązki/logika/prover/my_prover/prover/package.yaml:
-  hash: c8ce8e86537429b03d5609579045561505eb1e0ae1613030a527ee95f9340777
+  hash: 5e9b582d58f5b50c718ae93edd5579da20536ed42e79abeebcf488a6bdbebcde
