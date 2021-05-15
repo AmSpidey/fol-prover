@@ -30,7 +30,7 @@ version = Version [0,1,0,0] []
 bindir, libdir, dynlibdir, datadir, libexecdir, sysconfdir :: FilePath
 
 bindir     = "/home/zly/IMPORTANT/STUDIA materia\322y/2 stopie\324/obowi\261zki/logika/prover/my_prover/prover/.stack-work/install/x86_64-linux-tinfo6/861252c52de55fc2d4f63762c32c9226c7f2388d3d3fd2950d288a8a22b67bf8/8.10.4/bin"
-libdir     = "/home/zly/IMPORTANT/STUDIA materia\322y/2 stopie\324/obowi\261zki/logika/prover/my_prover/prover/.stack-work/install/x86_64-linux-tinfo6/861252c52de55fc2d4f63762c32c9226c7f2388d3d3fd2950d288a8a22b67bf8/8.10.4/lib/x86_64-linux-ghc-8.10.4/prover-0.1.0.0-6CeIPJLJdYQGSSmbtKbBM-prover-exe"
+libdir     = "/home/zly/IMPORTANT/STUDIA materia\322y/2 stopie\324/obowi\261zki/logika/prover/my_prover/prover/.stack-work/install/x86_64-linux-tinfo6/861252c52de55fc2d4f63762c32c9226c7f2388d3d3fd2950d288a8a22b67bf8/8.10.4/lib/x86_64-linux-ghc-8.10.4/prover-0.1.0.0-bnZw3U6DNvFAAkN2KgZwJ-prover-exe"
 dynlibdir  = "/home/zly/IMPORTANT/STUDIA materia\322y/2 stopie\324/obowi\261zki/logika/prover/my_prover/prover/.stack-work/install/x86_64-linux-tinfo6/861252c52de55fc2d4f63762c32c9226c7f2388d3d3fd2950d288a8a22b67bf8/8.10.4/lib/x86_64-linux-ghc-8.10.4"
 datadir    = "/home/zly/IMPORTANT/STUDIA materia\322y/2 stopie\324/obowi\261zki/logika/prover/my_prover/prover/.stack-work/install/x86_64-linux-tinfo6/861252c52de55fc2d4f63762c32c9226c7f2388d3d3fd2950d288a8a22b67bf8/8.10.4/share/x86_64-linux-ghc-8.10.4/prover-0.1.0.0"
 libexecdir = "/home/zly/IMPORTANT/STUDIA materia\322y/2 stopie\324/obowi\261zki/logika/prover/my_prover/prover/.stack-work/install/x86_64-linux-tinfo6/861252c52de55fc2d4f63762c32c9226c7f2388d3d3fd2950d288a8a22b67bf8/8.10.4/libexec/x86_64-linux-ghc-8.10.4/prover-0.1.0.0"

@@ -8,6 +8,7 @@ import Converters(ecnf)
 import qualified Data.HashSet as HS hiding (map)
 import Data.Hashable
 import Data.List
+import Data.Function
 import qualified Data.Tuple.Extra as Tuple
 
 instance Hashable Literal where
@@ -62,11 +63,11 @@ oneLiteral cnf =
             go h [] = []
             go h ([Pos p]:t) = go h t
             go h ([Neg p]:t) = go h t
-            go h (clause:t) = if (foldr (\l b -> (not $ HS.member l literals) && b) True clause) then (
+            go h (clause:t) = if foldr (\l b -> not (HS.member l literals) && b) True clause then (
                                   let filtered = [filter (\l -> not $ HS.member (opposite l) literals) clause]
                                   in case filtered of
                                       [[]] -> [[]]
-                                      _ -> filtered ++ (go h t)) else go h t
+                                      _ -> filtered ++ go h t) else go h t
 
 affirmNeg :: CNF -> CNF
 affirmNeg cnf = let
@@ -75,18 +76,28 @@ affirmNeg cnf = let
     to_remove = HS.union (HS.difference pl nl) (HS.difference nl pl)
     in filter (foldr (\l b -> not (HS.member (literal2var l) to_remove) && b ) True) cnf
 
+leastCommonVar :: CNF -> PropName
+leastCommonVar cnf = go $ positive_literals con_cnf ++ negative_literals con_cnf where
+      go :: [PropName] -> PropName
+      go = head . minimumBy (compare `on` length) . group . sort
+
+      con_cnf = concat cnf
+        -- let hm = HM.fromList [(l, 0) | l <- literals cnf]
+        -- in max $ toList $ countVars cnf hm
+
+        -- max []
+
 resolution :: CNF -> CNF
--- we will just take the first variable we find
 resolution [] = []
 resolution [[]] = [[]]
-resolution cnf = go (literal2var $ head $ head cnf) cnf where
+resolution cnf = go (leastCommonVar cnf) cnf where
     go :: PropName -> CNF -> CNF
     go l cnf =
       let pos_rest = partition (elem $ Pos l) cnf
           neg_rest = partition (elem $ Neg l) (snd pos_rest)
           positives = map (filter (/= Pos l)) (fst pos_rest)
           negatives = map (filter (/= Neg l)) (fst neg_rest)
-      in distribute positives negatives ++ snd neg_rest
+      in nub $ distribute positives negatives ++ snd neg_rest
 
 doWhileCan :: (CNF -> CNF) -> CNF -> CNF -> CNF
 doWhileCan f x y = if x == y then x else doWhileCan f y (f y)

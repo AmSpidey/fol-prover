@@ -53,3 +53,12 @@ replaceComb vars ts = [zip vars z | z <- combWithRep (length vars) ts]
 
 allSuffixes :: [a] -> [[a]]
 allSuffixes x = [take (k - 1) x ++ [y] | y <- x | k <- [1..]]
+
+remSuperList :: Eq a => [[a]] -> [[a]]
+remSuperList l = go l l where
+    go :: Eq a => [[a]] -> [[a]] -> [[a]]
+    go [] _ = []
+    go (l:lt) f = if isSuperList l f then go lt f else l : go lt f
+
+    isSuperList :: Eq a => [a] -> [[a]] -> Bool
+    isSuperList l f = or [intersect l ls == ls && length l > length ls | ls <- f]
