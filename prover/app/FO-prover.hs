@@ -72,27 +72,18 @@ kUniverse sig 0 =
     in consts'
 kUniverse sig k = [Fun f vrs | (f, ar) <- sig, vrs <- combWithRep ar (kUniverse sig (k - 1))]
 
-subUniverse :: Signature -> Int -> [Term]
-subUniverse sig n = if length (constants sig) == length sig then kUniverse sig 0 else
-    merges [kUniverse sig k | k <- [0..n]]
-
-universe :: Signature -> [Term]
-universe sig = if length (constants sig) == length sig then kUniverse sig 0 else
-    merges [subUniverse sig k | k <- [0..]]
-
 prover :: FOProver
 prover φ =
     let one_two = removeForall(skolemise $ generalise (Not φ))
         signature = sig one_two
-        --uni = universe signature
-        --grounds = groundInstances one_two uni
-    in loop 0 signature one_two --(not . and) ([dpSatSolver (combAnd gs) | gs <- allSuffixes grounds])
+    in loop 0 signature one_two
     where
-        loop 0 sig ψ = if length (constants sig) == length sig then 
-            (not . and) [dpSatSolver $ combAnd gs | gs <- lsort $ tail $ subsequences $ groundInstances ψ $ kUniverse sig 0]
+        loop 0 sig ψ =
+            let res = (not . and) [dpSatSolver $ combAnd $ groundInstances ψ $ kUniverse sig 0]
+            in if length (constants sig) == length sig || res then res
             else loop 1 sig ψ
         loop n sig ψ
-            | (not . and) [dpSatSolver $ combAnd gs | gs <- lsort $ tail $ subsequences $ groundInstances ψ $ concat [kUniverse sig k | k <- [1..n]]] = True
+            | (not . and) [dpSatSolver $ combAnd $ groundInstances ψ $ concat [kUniverse sig k | k <- [1..n]]] = True
             | otherwise = loop (n + 1) sig ψ
 main :: IO ()
 main = do
