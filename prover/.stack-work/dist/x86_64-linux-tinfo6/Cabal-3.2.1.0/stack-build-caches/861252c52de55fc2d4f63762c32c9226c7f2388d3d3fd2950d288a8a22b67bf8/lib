@@ -3,13 +3,13 @@
 /home/zly/IMPORTANT/STUDIA materiały/2 stopień/obowiązki/logika/prover/my_prover/prover/prover.cabal:
   hash: e1884bbbdc6cf42b8e413c2eafe998b61c97d19a6dbda4e32c836ea89f532adb
 /home/zly/IMPORTANT/STUDIA materiały/2 stopień/obowiązki/logika/prover/my_prover/prover/src/SATSolver.hs:
-  hash: f824c246831895818eef493895bba6289e9110f1dd2473a06b486ea92b594538
+  hash: 0fd22db66092a48c5b71c594ad310dba1a459cb9210f41ae9cdcfd2c07f2cb62
 ? /home/zly/IMPORTANT/STUDIA materiały/2 stopień/obowiązki/logika/prover/my_prover/prover/.stack-work/dist/x86_64-linux-tinfo6/Cabal-3.2.1.0/build/autogen/cabal_macros.h
 : hash: 9925e910fd9201d8e4df783c94a2aa2816730a17449efa31f2daa05c4c165b6f
 /home/zly/IMPORTANT/STUDIA materiały/2 stopień/obowiązki/logika/prover/my_prover/prover/src/FOUtils.hs:
-  hash: db50531b85aeb3085784e40204f8e6519d86100cc7a8a077a64073d8c4c0c717
+  hash: 4d89b182dc61cb821559d358b5d3c0c272920720d2aa326050101e3d9c2b7410
 /home/zly/IMPORTANT/STUDIA materiały/2 stopień/obowiązki/logika/prover/my_prover/prover/src/Converters.hs:
-  hash: 8f0e1a9bf8685af23ebf2c3cdfdd0db60eb98b63712ee4075632e3fd4ee46a43
+  hash: c30fb50884b4113ce6565b3eba73448431a9b16d77bedd08b632e970d3eb1078
 /home/zly/IMPORTANT/STUDIA materiały/2 stopień/obowiązki/logika/prover/my_prover/prover/README.md:
   hash: 127e3ba57e53a6c547038a28b6470891642d79fe2dac77e49b1f4e7eed079ed4
 /home/zly/IMPORTANT/STUDIA materiały/2 stopień/obowiązki/logika/prover/my_prover/prover/ChangeLog.md:
@@ -17,7 +17,7 @@
 /home/zly/IMPORTANT/STUDIA materiały/2 stopień/obowiązki/logika/prover/my_prover/prover/src/PropUtils.hs:
   hash: 62d6fc1ff27970bee9102ceb2e5f784110b901e7c0461a6530e2ff4331a74a3c
 /home/zly/IMPORTANT/STUDIA materiały/2 stopień/obowiązki/logika/prover/my_prover/prover/src/Utils.hs:
-  hash: 974c0eaeb04c94d7a633b60a5a3904edca74ef0b6bb321113265d8c7ff84d241
+  hash: e53875216d8f0f3ff8341d2fd3616a0c74932e8e5d67b9c40b968e0095d7a0ed
 /usr/include/stdc-predef.h:
   hash: 64fdf694f7b3d51ec6c45c06dcb71ebbe9455742d3ea673012016668853d3bff
 ? /home/zly/IMPORTANT/STUDIA materiały/2 stopień/obowiązki/logika/prover/my_prover/prover/.stack-work/dist/x86_64-linux-tinfo6/Cabal-3.2.1.0/build/autogen/Paths_prover.hs

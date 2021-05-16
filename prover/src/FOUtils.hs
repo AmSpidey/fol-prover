@@ -46,6 +46,9 @@ atomicFormulas (Forall x phi) = atomicFormulas phi
 freshIn :: VarName -> Formula -> Bool
 x `freshIn` phi = not $ x `elem` vars phi
 
+freeIn :: VarName -> Formula -> Bool
+x `freeIn` phi = x `elem` fv phi
+
 freshVariant :: VarName -> Formula -> VarName
 freshVariant x phi = head [ y | y <- variants x, y `freshIn` phi ]
 

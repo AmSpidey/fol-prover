@@ -125,8 +125,47 @@ pnf = go . nnf where
 
 -- skolemization for sentences
 
+miniScoping :: Formula -> Formula
+miniScoping T = T
+miniScoping F = F
+miniScoping rel@(Rel _ _) = rel
+miniScoping f@(Forall x (And phi psi)) = if x `freeIn` phi && x `freeIn` psi then f else
+    push AND FORALL x (miniScoping phi) (miniScoping psi)
+miniScoping f@(Exists x (And phi psi)) = if x `freeIn` phi && x `freeIn` psi then f else
+    push AND EXISTS x (miniScoping phi) (miniScoping psi)
+miniScoping f@(Forall x (Or phi psi)) = if x `freeIn` phi && x `freeIn` psi then f else
+    push OR FORALL x (miniScoping phi) (miniScoping psi)
+miniScoping f@(Exists x (Or phi psi)) = if x `freeIn` phi && x `freeIn` psi then f else
+    push OR EXISTS x (miniScoping phi) (miniScoping psi)
+miniScoping (Exists x phi) = let
+    phi' = miniScoping phi
+    in if not (x `freeIn` phi') then phi' else Exists x phi'
+miniScoping (Forall x phi) = let
+    phi' = miniScoping phi
+    in if not (x `freeIn` phi') then phi' else Forall x phi'
+miniScoping (And phi psi) = And (miniScoping phi) (miniScoping psi)
+miniScoping (Or phi psi) = Or (miniScoping phi) (miniScoping psi)
+miniScoping (Not phi) = Not phi
+
+-- pusher (Forall x (And phi psi)) = push AND FORALL x (miniScoping phi) (miniScoping psi)
+-- pusher (Exists x (And phi psi)) = push AND EXISTS x (miniScoping phi) (miniScoping psi)
+-- pusher (Forall x (Or phi psi)) = push OR FORALL x (miniScoping phi) (miniScoping psi)
+-- pusher 
+push op quant x φ ψ =
+    let φ' = go quant x φ
+        ψ' = go quant x ψ
+    in case op of
+        AND -> And φ' ψ'
+        OR -> Or φ' ψ'
+    where
+    go quant x φ =
+        if not (x `freeIn` φ) then φ
+        else case quant of
+            EXISTS -> Exists x φ
+            _ -> Forall x φ
+
 skolemise :: Formula -> Formula
-skolemise = pnf . skolemFunc . fresh . nnf
+skolemise = pnf . skolemFunc . fresh . miniScoping . nnf
 
 skolemFunc :: Formula -> Formula
 skolemFunc = go [] where

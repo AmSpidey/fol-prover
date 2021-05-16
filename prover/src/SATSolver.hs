@@ -1,7 +1,7 @@
 module SATSolver where
 
 import Formula
-import Utils (functions, distribute)
+import Utils (functions, distribute, remSuperList)
 import FOUtils (atomicFormulas)
 import PropUtils
 import Converters(ecnf)
@@ -97,7 +97,7 @@ resolution cnf = go (leastCommonVar cnf) cnf where
           neg_rest = partition (elem $ Neg l) (snd pos_rest)
           positives = map (filter (/= Pos l)) (fst pos_rest)
           negatives = map (filter (/= Neg l)) (fst neg_rest)
-      in nub $ distribute positives negatives ++ snd neg_rest
+      in nub $ remSuperList $ distribute positives negatives ++ snd neg_rest
 
 doWhileCan :: (CNF -> CNF) -> CNF -> CNF -> CNF
 doWhileCan f x y = if x == y then x else doWhileCan f y (f y)

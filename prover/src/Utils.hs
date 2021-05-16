@@ -62,3 +62,6 @@ remSuperList l = go l l where
 
     isSuperList :: Eq a => [a] -> [[a]] -> Bool
     isSuperList l f = or [intersect l ls == ls && length l > length ls | ls <- f]
+
+lsort :: [[a]] -> [[a]]
+lsort = sortOn length
