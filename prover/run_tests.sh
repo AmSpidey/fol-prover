@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TIMEOUT_AMOUNT=10s
+TIMEOUT_AMOUNT=3s
 TIMEOUT=$(if which timeout >& /dev/null; then echo "timeout"; else echo "gtimeout"; fi)
 PROVER=FO-prover
 
@@ -126,5 +126,5 @@ for test in ./tests/C/t*.txt; do
 done
 
 total=$((total_A + total_B + total_C))
-echo "Score: $score/$total"
+echo "Score: $score"
 echo "$score" > "score.txt"

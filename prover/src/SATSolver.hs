@@ -82,10 +82,6 @@ leastCommonVar cnf = go $ positive_literals con_cnf ++ negative_literals con_cnf
       go = head . minimumBy (compare `on` length) . group . sort
 
       con_cnf = concat cnf
-        -- let hm = HM.fromList [(l, 0) | l <- literals cnf]
-        -- in max $ toList $ countVars cnf hm
-
-        -- max []
 
 resolution :: CNF -> CNF
 resolution [] = []

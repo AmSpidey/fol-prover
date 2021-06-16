@@ -51,8 +51,14 @@ combWithRep k l = distribute (combWithRep (k - 1) l) [[x] | x <- l]
 replaceComb :: [a] -> [b] -> [[(a, b)]]
 replaceComb vars ts = [zip vars z | z <- combWithRep (length vars) ts]
 
-allSuffixes :: [a] -> [[a]]
-allSuffixes x = [take (k - 1) x ++ [y] | y <- x | k <- [1..]]
+splitEvery :: Int -> [a] -> [[a]]
+splitEvery _ [] = []
+splitEvery n list = first : (splitEvery n rest)
+  where
+    (first,rest) = splitAt n list
+
+allSuffixes :: Int -> [a] -> [[a]]
+allSuffixes n x = [concat $ take k (splitEvery n x) | k <- [1..length $ splitEvery n x]]
 
 remSuperList :: Eq a => [[a]] -> [[a]]
 remSuperList l = go l l where

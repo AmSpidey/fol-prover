@@ -147,10 +147,6 @@ miniScoping (And phi psi) = And (miniScoping phi) (miniScoping psi)
 miniScoping (Or phi psi) = Or (miniScoping phi) (miniScoping psi)
 miniScoping (Not phi) = Not phi
 
--- pusher (Forall x (And phi psi)) = push AND FORALL x (miniScoping phi) (miniScoping psi)
--- pusher (Exists x (And phi psi)) = push AND EXISTS x (miniScoping phi) (miniScoping psi)
--- pusher (Forall x (Or phi psi)) = push OR FORALL x (miniScoping phi) (miniScoping psi)
--- pusher 
 push op quant x φ ψ =
     let φ' = go quant x φ
         ψ' = go quant x ψ
