@@ -1,1 +1,0 @@
-Exists "x" (Exists "y" (Or (Rel "a" [Var "x"]) (Rel "a" [Var "y"])))

@@ -1,1 +1,0 @@
-Iff (Forall "x" (Or (Rel "p" []) (Rel "a" [Var "x"]))) (Or (Rel "p" []) (Forall "x" (Rel "a" [Var "x"])))

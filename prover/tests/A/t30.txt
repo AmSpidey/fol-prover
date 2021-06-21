@@ -1,1 +1,0 @@
-Or (Rel "p" []) (Not (Rel "p" []))
