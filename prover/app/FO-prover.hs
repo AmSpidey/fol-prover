@@ -16,7 +16,7 @@ import Test.QuickCheck hiding (Fun, (===))
 
 import Formula
 import Parser hiding (one)
-import Utils(merges, distribute, combWithRep, allSuffixes, lsort)
+import Utils(combWithRep)
 import SATSolver
 import FOUtils
 import Converters

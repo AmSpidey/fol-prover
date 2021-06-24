@@ -19,14 +19,14 @@ literal2var :: Literal -> PropName
 literal2var (Pos p) = p
 literal2var (Neg p) = p
 
-positive_literals :: CNFClause -> [PropName]
-positive_literals ls = nub [p | Pos p <- ls]
+positiveLiterals :: CNFClause -> [PropName]
+positiveLiterals ls = nub [p | Pos p <- ls]
 
-negative_literals :: CNFClause -> [PropName]
-negative_literals ls = nub [p | Neg p <- ls]
+negativeLiterals :: CNFClause -> [PropName]
+negativeLiterals ls = nub [p | Neg p <- ls]
 
 literals :: [Literal] -> [PropName]
-literals ls = nub $ positive_literals ls ++ negative_literals ls
+literals ls = nub $ positiveLiterals ls ++ negativeLiterals ls
 
 opposite :: Literal -> Literal
 opposite (Pos p) = Neg p
@@ -37,8 +37,8 @@ remTautos [] = []
 remTautos [[]] = [[]]
 remTautos cnf = filter go cnf where
     go clause =
-        let pl = positive_literals clause
-            nl = negative_literals clause
+        let pl = positiveLiterals clause
+            nl = negativeLiterals clause
             intersection = intersect pl nl
         in case intersection of
             [] -> True
@@ -71,13 +71,13 @@ oneLiteral cnf =
 
 affirmNeg :: CNF -> CNF
 affirmNeg cnf = let
-    pl = HS.fromList $ concatMap positive_literals cnf
-    nl = HS.fromList $ concatMap negative_literals cnf
+    pl = HS.fromList $ concatMap positiveLiterals cnf
+    nl = HS.fromList $ concatMap negativeLiterals cnf
     to_remove = HS.union (HS.difference pl nl) (HS.difference nl pl)
     in filter (foldr (\l b -> not (HS.member (literal2var l) to_remove) && b ) True) cnf
 
 leastCommonVar :: CNF -> PropName
-leastCommonVar cnf = go $ positive_literals con_cnf ++ negative_literals con_cnf where
+leastCommonVar cnf = go $ positiveLiterals con_cnf ++ negativeLiterals con_cnf where
       go :: [PropName] -> PropName
       go = head . minimumBy (compare `on` length) . group . sort
 
@@ -114,7 +114,6 @@ dpSatSolver = solve . ecnf where
 sat :: Formula -> Bool
 sat phi = or [ev int phi | int <- functions atoms [True, False]]
   where atoms = atomicFormulas phi
-
         ev :: (Formula -> Bool) -> Formula -> Bool
         ev int T = True
         ev int F = False

@@ -53,7 +53,7 @@ replaceComb vars ts = [zip vars z | z <- combWithRep (length vars) ts]
 
 splitEvery :: Int -> [a] -> [[a]]
 splitEvery _ [] = []
-splitEvery n list = first : (splitEvery n rest)
+splitEvery n list = first : splitEvery n rest
   where
     (first,rest) = splitAt n list
 

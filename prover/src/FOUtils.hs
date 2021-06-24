@@ -6,7 +6,7 @@ import qualified Data.HashMap.Strict as HM hiding (map)
 import Data.Hashable
 
 import Formula
-import Utils(distribute, replaceComb)
+import Utils(replaceComb)
 
 varsT :: Term -> [VarName]
 varsT (Var x) = [x]
@@ -25,7 +25,6 @@ vars (Exists x phi) = nub $ x : vars phi
 vars (Forall x phi) = nub $ x : vars phi
 
 -- enumerate variants of a variable name
-
 variants :: VarName -> [VarName]
 variants x = x : [x ++ show n | n <- [0..]]
 
@@ -42,7 +41,6 @@ atomicFormulas (Exists x phi) = atomicFormulas phi
 atomicFormulas (Forall x phi) = atomicFormulas phi
 
 -- fresh rename
-
 freshIn :: VarName -> Formula -> Bool
 x `freshIn` phi = not $ x `elem` vars phi
 
@@ -100,7 +98,6 @@ hasQuants (Forall _ φ) = True
 hasQuants φ = False
 
 -- ground instances
-
 groundInstances :: Formula -> [Term] -> [Formula]
 groundInstances f ts = let
     combs = replaceComb (vars f) ts
